@@ -1,0 +1,41 @@
+[1] Loaded 270 state-years: 54 states x 2020-2024
+    Mean cash-out share by year: {2020: 0.1322, 2021: 0.1211, 2022: 0.2715, 2023: 0.1943, 2024: 0.1699}
+[2] Modeling rows (2021-2024): 216 | 7 lag features + state one-hot
+[3] Main experiment: tune on 2021-2022 -> 2023, refit 2021-2023, test 2024
+                       model    MAE   RMSE      R2                                                  best_params
+Persistence baseline (y_t-1) 0.0291 0.0328  0.5844                                                          n/a
+            Ridge regression 0.0551 0.0599 -0.3831                                               {'alpha': 100}
+               Decision tree 0.0321 0.0382  0.4371                                             {'max_depth': 6}
+               Random forest 0.0507 0.0547 -0.1562                       {'n_estimators': 200, 'max_depth': 10}
+           Gradient boosting 0.0569 0.0613 -0.4502 {'learning_rate': 0.01, 'n_estimators': 500, 'max_depth': 3}
+[4] Rolling-origin check and residual-on-persistence models
+ test_year                 target                        model    MAE      R2
+      2023                  level Persistence baseline (y_t-1) 0.0772 -0.9503
+      2023                  level             Ridge regression 0.0418  0.2384
+      2023                  level                Decision tree 0.0773 -1.1220
+      2023                  level                Random forest 0.0752 -0.6425
+      2023                  level            Gradient boosting 0.0503  0.1259
+      2024                  level Persistence baseline (y_t-1) 0.0291  0.5844
+      2024                  level             Ridge regression 0.0551 -0.3831
+      2024                  level                Decision tree 0.0321  0.4371
+      2024                  level                Random forest 0.0507 -0.1562
+      2024                  level            Gradient boosting 0.0569 -0.4502
+      2023 change vs. persistence             Ridge regression 0.1279 -3.4763
+      2023 change vs. persistence                Decision tree 0.0865 -1.3163
+      2023 change vs. persistence                Random forest 0.0980 -1.8567
+      2023 change vs. persistence            Gradient boosting 0.1348 -4.0862
+      2024 change vs. persistence             Ridge regression 0.1367 -6.8021
+      2024 change vs. persistence                Decision tree 0.0327  0.4006
+      2024 change vs. persistence                Random forest 0.0297  0.4953
+      2024 change vs. persistence            Gradient boosting 0.0483 -0.0500
+[5] Feature importance
+group
+num__lag1_Pct_Purchase                0.267
+num__lag1_Pct_Cashout                 0.202
+num__lag1_Pct_IRRRL                   0.199
+num__lag1_Avg Loan Amount IRRRL       0.130
+num__lag1_Avg Loan Amount Purchase    0.081
+State identity                        0.056
+num__lag1_log_Total_Count             0.037
+num__lag1_Avg Loan Amount Cash-Out    0.029
+[6] Done. Outputs written to outputs/

@@ -1,0 +1,9 @@
+group,mean_abs_shap
+num__lag1_Pct_Purchase,0.05219452890263701
+num__lag1_Pct_Cashout,0.024251066622933488
+num__lag1_Pct_IRRRL,0.020799751200567027
+num__lag1_Avg Loan Amount IRRRL,0.009934602492715293
+State identity,0.003878562421167789
+num__lag1_Avg Loan Amount Purchase,0.003323938180649665
+num__lag1_Avg Loan Amount Cash-Out,0.00267192468780799
+num__lag1_log_Total_Count,0.0011230269921754775
